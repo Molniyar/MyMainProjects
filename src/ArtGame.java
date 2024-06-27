@@ -327,7 +327,7 @@ public class ArtGame {
             }
         });
 
-        panel.setFocusable(true); // Установите фокус на панель, чтобы она могла принимать ввод с клавиатуры
+        panel.setFocusable(true); 
         panel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
