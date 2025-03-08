@@ -14,7 +14,7 @@ public class Plants {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setColor(new Color(0,0,0));
-                art.draw(g,800,800);
+                art.draw(g,0,0,800,800);
             }
         };
         panel.setBounds(0,0,800,800);

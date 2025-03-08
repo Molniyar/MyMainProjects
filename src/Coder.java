@@ -34,7 +34,7 @@ public class Coder {
                     case 'з' -> result.append("▽");
                     case 'и' -> {
                         if (s.charAt(i+1) == 'й'){
-                            result.append('_');
+                            result.append('⊞');
                             i++;
                         }
                         else result.append("⊡");
@@ -56,7 +56,7 @@ public class Coder {
                     case 'ч' -> result.append("ʁ");
                     case 'ш' -> result.append("◁▷");
                     case 'щ' -> result.append("◁▷");//◁▷
-                    case 'ъ' -> result.append("_");
+                    case 'ъ' -> result.append("⌉");
                     case 'ы' -> result.append("⊡");
                     case 'ь' -> result.append("|");
                     case 'э' -> result.append("⊗");

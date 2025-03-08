@@ -17,10 +17,25 @@ public class ElementCreator {
             }
         }
 
+        JTextArea textField = new JTextArea("нет информации");
+        textField.setBounds(20,280,300,300);
+        frame.add(textField);
+
+        int[] info = {1,1};
+
         JPanel panel = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
+                for (int i = 0; i < colors.length; i++) {
+                    for (int j = 0; j < colors.length; j++) {
+                        element.set(new Element(info[0], info[1]));
+                        OldPixelArt art = element.get().getArt();
+                        colors[i][j] = MolniyarMethod.integerToColor(art.getColorCode(i,j));
+                    }
+                }
+                textField.setText(element.get().getElement());
+
                 for (int j = 0; j < colors.length; j++) {
                     for (int i = 0; i < colors.length; i++) {
                         int num = Math.min(getWidth(), getHeight());
@@ -43,6 +58,11 @@ public class ElementCreator {
         mass.setPaintLabels(true);
         mass.setMinorTickSpacing(1);
         mass.setMajorTickSpacing(128); // Настроим разметку так, чтобы каждое 8е значение было отмечено
+        mass.addChangeListener(e -> {
+            info[0] = mass.getValue();
+            panel.updateUI();
+        });
+
 
         JSlider energy = new JSlider(1, 2048, 1);
         energy.setBounds(20, 90, 500, 50);
@@ -50,24 +70,17 @@ public class ElementCreator {
         energy.setPaintLabels(true);
         energy.setMinorTickSpacing(1);
         energy.setMajorTickSpacing(128); // Аналогично для второго слайдера
+        energy.addChangeListener(e -> {
+            info[1] = energy.getValue();
+            panel.updateUI();
+        });
 
         frame.add(mass);
         frame.add(energy);
 
-        JTextArea textField = new JTextArea("нет информации");
-        textField.setBounds(20,280,300,300);
-        frame.add(textField);
-
         JButton button = new JButton("Создать");
         button.addActionListener(e -> {
-            for (int i = 0; i < colors.length; i++) {
-                for (int j = 0; j < colors.length; j++) {
-                    element.set(new Element(mass.getValue(), energy.getValue()));
-                    OldPixelArt art = element.get().getArt();
-                    colors[i][j] = MolniyarMethod.integerToColor(art.getColorCode(i,j));
-                }
-            }
-            textField.setText(element.get().getElement());
+
             panel.updateUI();
         });
 

@@ -15,7 +15,9 @@ public class RandomGeneration {
     public static String landWithTree = LAND + COLOR_FOR_TREE + " * " + ANSI_RESET;
 
     public static void main(String[] args) {
-        int[][] generation = new int[16][16];
+        int size = 80;
+
+        int[][] generation = new int[size][size];
         print(generation);
         System.out.println("    ");
         for (int i = 0; i < generation.length; i++){

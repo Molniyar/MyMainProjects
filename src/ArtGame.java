@@ -8,7 +8,7 @@ public class ArtGame {
     public static void main(String[] args) {
         Color white = new Color(255,255,255);
 
-        int l = 8;
+        int l = 6;
         if (args.length > 0){
             l = Integer.parseInt(args[0]);
         }
@@ -19,8 +19,9 @@ public class ArtGame {
                 colors[i][j] = white;
             }
         }
-
-        final Color[] keepColor = {new Color(0, 0, 0),new Color(0, 0, 0)};
+        Color[] crs = {new Color(50,50,50),new Color(123,123,123),Color.WHITE};
+        final int[] indx = {0};
+        final Color[] keepColor = {new Color(0, 0, 0),Color.WHITE};
 
 
         JFrame frame = new JFrame("Pixel art");
@@ -289,6 +290,9 @@ public class ArtGame {
                                 g.setColor(new Color(255,255,255));
                                 g.drawRect(coordX,coordY, l, l);
                             }
+                            case 11 ->{
+
+                            }
 
                             default -> {
                                 g.setColor(colors[i][j]);
@@ -296,6 +300,7 @@ public class ArtGame {
                             }
                         }
                     }
+
                 }
             }
         };
@@ -312,11 +317,14 @@ public class ArtGame {
                 int x = e.getX();
                 int y = e.getY();
 
+                int mmx = x / (Math.min(panel.getWidth(),panel.getHeight()) / colors.length);
+                int mmy = y / (Math.min(panel.getWidth(),panel.getHeight()) / colors.length);
+
                 try {
                     switch (e.getButton()){
-                        case MouseEvent.BUTTON1 -> colors[x / (Math.min(panel.getWidth(),panel.getHeight()) / colors.length)][y / (Math.min(panel.getWidth(),panel.getHeight()) / colors.length)] = keepColor[0];
+                        case MouseEvent.BUTTON1 -> colors[mmx][mmy] = keepColor[0];
                         case MouseEvent.BUTTON2 -> keepColor[0] = colors[x / (Math.min(panel.getWidth(),panel.getHeight()) / colors.length)][y / (Math.min(panel.getWidth(),panel.getHeight()) / colors.length)];
-                        case MouseEvent.BUTTON3 -> colors[x / (Math.min(panel.getWidth(),panel.getHeight()) / colors.length)][y / (Math.min(panel.getWidth(),panel.getHeight()) / colors.length)] = keepColor[1];
+                        case MouseEvent.BUTTON3 -> colors[mmx][mmy] = keepColor[1];
                     }
                 }catch (ArrayIndexOutOfBoundsException exception){
                     new PlaySound("1",1,500,20);
@@ -327,7 +335,8 @@ public class ArtGame {
             }
         });
 
-        panel.setFocusable(true); 
+        panel.setFocusable(true);
+        panel.requestFocusInWindow();
         panel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -370,7 +379,7 @@ public class ArtGame {
                         JOptionPane.showMessageDialog(frame, "нажмите на 'Enter' что бы сделать цвет темнее или на 'BackSpace' что бы светлее");
                         JOptionPane.showMessageDialog(frame, "что бы выбрать белый, нажмите пробел");
                         JOptionPane.showMessageDialog(frame, "что бы всё очистить, нажмите 'Shift'");
-                        JOptionPane.showMessageDialog(frame, "нажатие на колёсиео мыши работает как пипетка");
+                        JOptionPane.showMessageDialog(frame, "нажатие на колёсиkо мыши работает как пипетка");
                     }
 
 
@@ -397,9 +406,7 @@ public class ArtGame {
                     case KeyEvent.VK_W ->{
                         int random = MolniyarMethod.randomNumber(0,colors.length-1);
                         int r2 = MolniyarMethod.randomNumber(0,colors.length-1);
-                        if ((random == 0 && r2 == 0) || (r2 == colors.length-1 && random == colors.length-1)){
-                            return;
-                        }
+                        if ((random == 0 && r2 == 0) || (r2 == colors.length-1 && random == colors.length-1)){return;}
                         colors[random][r2] = new Color(4,0,0);
                         panel.updateUI();
                     }
@@ -411,6 +418,9 @@ public class ArtGame {
                         int g = keepColor[0].getGreen();
                         int b = keepColor[0].getBlue();
                         keepColor[0] = new Color(255-r,255-g,255-b);
+                    }
+                    case KeyEvent.VK_E -> {
+
                     }
                 }
             }

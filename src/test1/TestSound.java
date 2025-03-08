@@ -20,7 +20,7 @@ public class TestSound extends JFrame {
         setLayout(new BorderLayout());
 
         // Ползунок для управления частотой
-        frequencySlider = new JSlider(JSlider.HORIZONTAL, 100, 2000, 440);
+        frequencySlider = new JSlider(JSlider.HORIZONTAL, 0, 4000, 440);
         frequencySlider.setMajorTickSpacing(500);
         frequencySlider.setMinorTickSpacing(50);
         frequencySlider.setPaintTicks(true);
@@ -54,17 +54,7 @@ public class TestSound extends JFrame {
         setVisible(true);
     }
 
-    private void initAudio() {
-        try {
-            AudioFormat format = new AudioFormat(SAMPLE_RATE, 16, 1, true, true);
-            DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-            line = (SourceDataLine) AudioSystem.getLine(info);
-            line.open(format, BUFFER_SIZE);
-            line.start();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     private void generateSound() {
         byte[] buffer = new byte[BUFFER_SIZE * 2];
@@ -98,6 +88,17 @@ public class TestSound extends JFrame {
 
     private void updateFrequency() {
         // Обновление частоты (в данном случае просто вызов метод для актуальности)
+    }
+    private void initAudio() {
+        try {
+            AudioFormat format = new AudioFormat(SAMPLE_RATE, 16, 1, true, true);
+            DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+            line = (SourceDataLine) AudioSystem.getLine(info);
+            line.open(format, BUFFER_SIZE);
+            line.start();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

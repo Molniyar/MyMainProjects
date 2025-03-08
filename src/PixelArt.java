@@ -126,6 +126,23 @@ public class PixelArt {
         }
         return g;
     }
+    public Graphics draw(Graphics g,int x,int y, int width, int height) {//V
+        for (int i = 0; i < pixelArt.length; i++){
+            for (int j = 0; j < pixelArt[i].length; j++){
+                if (pixelArt[i][j] == null){continue;}
+
+                int coordX = width / pixelArt.length * j;
+                int coordY = height / pixelArt[i].length * i;
+
+                int X = width / pixelArt.length;
+                int Y = height / pixelArt[i].length;
+
+                g.setColor(pixelArt[i][j]);
+                g.fillRect(coordX+x,coordY+y,Y,X);
+            }
+        }
+        return g;
+    }
     public void toBlack_White() {//V
         for (int i = 0; i < pixelArt.length; i++){
             for (int j = 0; j < pixelArt[i].length; j++){

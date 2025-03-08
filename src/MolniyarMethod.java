@@ -2,7 +2,7 @@ import javax.sound.sampled.*;
 import java.awt.*;
 
 public class MolniyarMethod {
-    public static boolean random(int persent){ return Math.random()<persent*.01;}
+    public static boolean random(int persent){return Math.random()<persent*.01;}
     public static String getColorText(String print, int textColor, int backgroundColor){
         boolean background = true;
         if (backgroundColor == -1){

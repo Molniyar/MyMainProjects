@@ -17,18 +17,21 @@ public class Cipher {
                     i--;
                     continue;
                 }
-                if (i < 4 && char_ - 48 == nums[i]){out.append(MolniyarMethod.getColorText(char_ + "",40,257));
+                if (i < 4 && char_ - 48 == nums[i]){
+                    if (nums[0] ==char_-48 || nums[1] ==char_-48 || nums[2] ==char_-48 || nums[3] ==char_-48){out.append(MolniyarMethod.getColorText(char_ + "",190,16));}
+                    else out.append(MolniyarMethod.getColorText(char_ + "",40,16));
                     switch (i){
                         case 0 -> i1 = true;
                         case 1 -> i2 = true;
                         case 2 -> i3 = true;
                         case 3 -> i4 = true;
                     }
+
                 }
                 else if (nums[0] ==char_-48 || nums[1] ==char_-48 || nums[2] ==char_-48 || nums[3] ==char_-48){
-                    out.append(MolniyarMethod.getColorText(char_ + "",184,257));
+                    out.append(MolniyarMethod.getColorText(char_ + "",184,16));
                 }
-                else out.append(MolniyarMethod.getColorText(char_ + "",160,257));
+                else out.append(MolniyarMethod.getColorText(char_ + "",160,16));
             }
             System.out.println(out);
         }

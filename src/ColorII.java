@@ -43,29 +43,55 @@ public class ColorII {
 
 
 
-        JTextField rValue = new JTextField(red  .getValue());
+        JTextField rValue = new JTextField(red.getValue());
         rValue.setBounds(frame.getWidth()/4*3,0,frame.getWidth()/4,frame.getHeight()/2/3);
 
         JTextField gValue = new JTextField(green.getValue());
         gValue.setBounds(frame.getWidth()/4*3,frame.getHeight()/2/3,frame.getWidth()/4,frame.getHeight()/2/3);
 
-        JTextField bValue = new JTextField(blue .getValue());
+        JTextField bValue = new JTextField(blue.getValue());
         bValue.setBounds(frame.getWidth()/4*3,frame.getHeight()/2/3*2,frame.getWidth()/4,frame.getHeight()/2/3);
 
 
+        red.addChangeListener(e -> rValue.setText(String.valueOf(red.getValue())));
+        green.addChangeListener(e -> gValue.setText(String.valueOf(green.getValue())));
+        blue.addChangeListener(e -> bValue.setText(String.valueOf(blue.getValue())));
+
 
         JButton showCol = new JButton("Show colors");
-        showCol.setBounds(0,frame.getHeight()/2,frame.getWidth()/4,frame.getHeight()/2);
+        showCol.setBounds(0,frame.getHeight()/2,frame.getWidth()/4,frame.getHeight()/4);
         showCol.addActionListener(e -> {
             rValue.setText(red.getValue()+"");
             gValue.setText(green.getValue()+"");
             bValue.setText(blue.getValue()+"");
         });
 
-
         JButton create = new JButton("create");
-        create.setBounds(frame.getWidth()/4,frame.getHeight()/2,frame.getWidth()/4,frame.getHeight()/2);
+        create.setBounds(frame.getWidth()/4,frame.getHeight()/2,frame.getWidth()/4,frame.getHeight()/4);
         create.addActionListener(e -> {
+            color.set(new Color(red.getValue(), green.getValue(), blue.getValue()));
+            panel.repaint();
+        });
+
+
+        JButton inverse  = new JButton("inverse");
+        inverse.setBounds(0,frame.getHeight()/4*3,frame.getWidth()/4,frame.getHeight()/4);
+        inverse.addActionListener(e -> {
+            red.setValue(255-red.getValue());
+            green.setValue(255-green.getValue());
+            blue.setValue(255-blue.getValue());
+
+            color.set(new Color(red.getValue(), green.getValue(), blue.getValue()));
+            panel.repaint();
+        });
+
+        JButton random = new JButton("random");
+        random.setBounds(frame.getWidth()/4,frame.getHeight()/4*3,frame.getWidth()/4,frame.getHeight()/4);
+        random.addActionListener(e -> {
+            red.setValue(MolniyarMethod.randomNumber(0,255));
+            green.setValue(MolniyarMethod.randomNumber(0,255));
+            blue.setValue(MolniyarMethod.randomNumber(0,255));
+
             color.set(new Color(red.getValue(), green.getValue(), blue.getValue()));
             panel.repaint();
         });
@@ -82,6 +108,9 @@ public class ColorII {
         frame.add(showCol);
 
         frame.add(create);
+
+        frame.add(inverse);
+        frame.add(random);
 
         frame.add(panel);
         panel.setVisible(true);
