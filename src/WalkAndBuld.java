@@ -26,10 +26,10 @@ public class WalkAndBuld {
 
         HashMap<String, Integer> items_ = WaBMethods.getItemsHashMap();
 
-        //String[] names        = {"air","oak log","leaves\nblock","leaves","rocks","stone","magnetite","planks","stick","apple","sapling","crafting table","iron ore","iron ingot","wooden pickaxe","stone pickaxe","iron pickaxe"};
+        String[] names        = WaBMethods.getNames();
 
-        boolean[] areWalkable = {true, false, false, true, true, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
-        boolean[] areTurnable = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true,true};
+        boolean[] areWalkable = {true, false, false, true, true, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
+        boolean[] areTurnable = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true,true};
         int[] strengths = {0, 5, 2, 1, 2, 8, 10, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
         PolygonArt[] blocks = {
                 null,
@@ -68,7 +68,22 @@ public class WalkAndBuld {
                 new PolygonArt(new Polygon[]{new Polygon(new int[]{2,4,5,3}, new int[]{4,3,4,5}, 4), new Polygon(new int[]{3,3,5,5}, new int[]{6,5,4,5}, 4), new Polygon(new int[]{2,2,3,3}, new int[]{5,4,5,6}, 4)}, new Color[]{new Color(255, 143, 82), new Color(221, 88, 37), new Color(161, 79, 35)}),
                 new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,4,4}, new int[]{7,0,0,7}, 4), new Polygon(new int[]{4,4,5,5}, new int[]{7,0,0,7}, 4), new Polygon(new int[]{1,1,4,4}, new int[]{4,3,3,4}, 4), new Polygon(new int[]{1,1,4,4}, new int[]{5,4,4,5}, 4), new Polygon(new int[]{5,5,7,7}, new int[]{4,3,3,4}, 4), new Polygon(new int[]{5,5,7,7}, new int[]{5,4,4,5}, 4), new Polygon(new int[]{2,4,6}, new int[]{3,1,3}, 3)}, new Color[]{new Color(255, 143, 82, 255), new Color(221, 88, 37), new Color(255, 143, 82), new Color(221, 88, 37),new Color(255, 143, 82), new Color(221, 88, 37), new Color(0, 0, 0)}),
                 new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,4,4}, new int[]{7,0,0,7}, 4), new Polygon(new int[]{4,4,5,5}, new int[]{7,0,0,7}, 4), new Polygon(new int[]{1,1,4,4}, new int[]{4,3,3,4}, 4), new Polygon(new int[]{1,1,4,4}, new int[]{5,4,4,5}, 4), new Polygon(new int[]{5,5,7,7}, new int[]{4,3,3,4}, 4), new Polygon(new int[]{5,5,7,7}, new int[]{5,4,4,5}, 4), new Polygon(new int[]{2,4,6}, new int[]{3,1,3}, 3)}, new Color[]{new Color(255, 143, 82, 255), new Color(221, 88, 37), new Color(255, 143, 82), new Color(221, 88, 37),new Color(255, 143, 82), new Color(221, 88, 37), new Color(255, 0, 0)}),
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{-1,-1,9,9}, new int[]{-1,9,9,-1}, 4)}, new Color[]{new Color(0, 255, 0, 100)}),
                 new PolygonArt(new Polygon[]{new Polygon(new int[]{2,2,4,6,6,3}, new int[]{6,4,2,2,3,6}, 6), new Polygon(new int[]{2,3,3}, new int[]{4,3,5}, 3), new Polygon(new int[]{3,4,4}, new int[]{3,2,4}, 3), new Polygon(new int[]{4,5,5}, new int[]{2,2,3}, 3)}, new Color[]{new Color(136, 103, 0, 255), new Color(83, 68, 0), new Color(94, 78, 0), new Color(104, 87, 0)}),
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{2,2,4,6,6,3}, new int[]{6,4,2,2,3,6}, 6), new Polygon(new int[]{2,3,3}, new int[]{4,3,5}, 3), new Polygon(new int[]{3,4,4}, new int[]{3,2,4}, 3), new Polygon(new int[]{4,5,5}, new int[]{2,2,3}, 3)}, new Color[]{new Color(136, 103, 0, 255), new Color(83, 68, 0), new Color(94, 78, 0), new Color(104, 87, 0)}),
+        };
+
+        PolygonArt[] breakingProgress = {
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,5,5}, new int[]{5,4,4,3}, 4)}, new Color[]{new Color(0, 0, 0,100)}),
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,5,5}, new int[]{5,4,4,3}, 4),new Polygon(new int[]{2,3,3}, new int[]{3,3,4}, 3),new Polygon(new int[]{5,5,6,6}, new int[]{4,3,4,5}, 4)}, new Color[]{new Color(0, 0, 0,100)}),
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,5,6,6}, new int[]{5,4,4,3,2}, 5),new Polygon(new int[]{2,3,3}, new int[]{3,3,4}, 3),new Polygon(new int[]{5,5,6,6}, new int[]{4,3,4,5}, 4),new Polygon(new int[]{2,3,3}, new int[]{6,5,6}, 3)}, new Color[]{new Color(0, 0, 0,100)}),
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,5,6,6}, new int[]{5,4,4,3,2}, 5),new Polygon(new int[]{2,3,3}, new int[]{3,3,4}, 3),new Polygon(new int[]{5,5,6,6}, new int[]{4,3,4,5}, 4),new Polygon(new int[]{2,3,3}, new int[]{6,5,6}, 3),new Polygon(new int[]{4,4,5,5}, new int[]{5,4,5,6}, 4)}, new Color[]{new Color(0, 0, 0,100)}),
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,5,6,6}, new int[]{5,4,4,3,2}, 5),new Polygon(new int[]{2,3,3}, new int[]{3,3,4}, 3),new Polygon(new int[]{5,5,6,6}, new int[]{4,3,4,5}, 4),new Polygon(new int[]{2,3,3}, new int[]{6,5,6}, 3),new Polygon(new int[]{4,4,5,5}, new int[]{5,4,5,6}, 4),new Polygon(new int[]{3,3,4,4}, new int[]{3,2,1,2}, 4)}, new Color[]{new Color(0, 0, 0,100)}),
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,5,6,6}, new int[]{5,4,4,3,2}, 5),new Polygon(new int[]{2,3,3}, new int[]{3,3,4}, 3),new Polygon(new int[]{5,5,6,6,7,7}, new int[]{4,3,4,6,7,6}, 6),new Polygon(new int[]{2,2,3,3}, new int[]{7,6,5,6}, 4),new Polygon(new int[]{4,4,5,5}, new int[]{5,4,5,6}, 4),new Polygon(new int[]{3,3,4,4}, new int[]{3,2,1,2}, 4)}, new Color[]{new Color(0, 0, 0,100)}),
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,5,6,6}, new int[]{5,4,4,3,2}, 5),new Polygon(new int[]{3,1,0,1,3}, new int[]{4,2,2,3,3}, 5),new Polygon(new int[]{5,5,6,6,7,7}, new int[]{4,3,4,6,7,6}, 6),new Polygon(new int[]{2,2,3,3}, new int[]{7,6,5,6}, 4),new Polygon(new int[]{4,4,5,5}, new int[]{5,4,5,6}, 4),new Polygon(new int[]{3,3,4,4}, new int[]{3,2,1,2}, 4),new Polygon(new int[]{5,5,6,6}, new int[]{1,0,1,2}, 4)}, new Color[]{new Color(0, 0, 0,100)}),
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,5,6,6}, new int[]{5,4,4,3,2}, 5),new Polygon(new int[]{3,1,0,1,3}, new int[]{4,2,2,3,3}, 5),new Polygon(new int[]{5,5,6,6,7,7}, new int[]{4,3,4,6,7,6}, 6),new Polygon(new int[]{1,3,3,2}, new int[]{7,5,6,7}, 4),new Polygon(new int[]{4,4,5,5}, new int[]{5,4,5,6}, 4),new Polygon(new int[]{3,3,4,4}, new int[]{3,2,1,2}, 4),new Polygon(new int[]{5,5,6,6}, new int[]{1,0,1,2},4),new Polygon(new int[]{6,7,8,7}, new int[]{4,3,3,4}, 4)}, new Color[]{new Color(0, 0, 0,100)}),
+                new PolygonArt(new Polygon[]{new Polygon(new int[]{3,3,5,6,6}, new int[]{5,4,4,3,2}, 5),new Polygon(new int[]{3,1,0,1,3}, new int[]{4,2,2,3,3}, 5),new Polygon(new int[]{5,5,6,6,7,7}, new int[]{4,3,4,6,7,6}, 6),new Polygon(new int[]{1,3,3,2}, new int[]{7,5,6,7}, 4),new Polygon(new int[]{4,4,5,5}, new int[]{5,4,5,6}, 4),new Polygon(new int[]{3,3,4,4}, new int[]{3,2,1,2}, 4),new Polygon(new int[]{5,5,6,6}, new int[]{1,0,1,2},4),new Polygon(new int[]{6,7,8,7}, new int[]{4,3,3,4}, 4)}, new Color[]{new Color(0, 0, 0,100)}),
+
         };
 
         final boolean[] showCraftingMenu = {false};
@@ -76,8 +91,9 @@ public class WalkAndBuld {
         final int[][] blockReputting = {{0, 0}};
         final boolean[] showInventory = {false};
         int[][][] inventory = new int[4][6][2];
-        inventory[0][0]= new int[]{34,16};
-        inventory[0][1]= new int[]{35,16};
+        //inventory[0][0]=new int[]{34,16};
+        //inventory[0][1]=new int[]{35,16};
+        //inventory[0][2]=new int[]{36,16};
 
         PolygonArt playerView = new PolygonArt(new Polygon[]{new Polygon(new int[]{2,1,1,2,6,7,7,6},new int[]{7,6,2,1,1,2,6,7},8),new Polygon(new int[]{2,1,1,7,7,6},new int[]{7,6,4,4,6,7},6),new Polygon(new int[]{2,2,3,3},new int[]{3,2,2,3},4),new Polygon(new int[]{5,5,6,6},new int[]{3,2,2,3},4)},new Color[]{new Color(255, 200, 1),new Color(123, 80, 1),new Color(0, 60, 120),new Color(0, 60, 120)});//255, 200, 1
 
@@ -112,18 +128,22 @@ public class WalkAndBuld {
             public void paintComponent(Graphics g) {
                 int num = Math.min(getWidth(), getHeight());
                 super.paintComponent(g);
-                int x = num / 16;
-                int y = num / 16;
+                int D = l;
+                int x = num / D;
+                int y = num / D;
 
-                for (int i = 0; i < 16; i++) {
-                    for (int j = 0; j < 16; j++) {
-                        int coordX = num / 16 * j;
-                        int coordY = num / 16 * i;
+                for (int i = 0; i < D; i++) {
+                    for (int j = 0; j < D; j++) {
+                        int coordX = num / D * j;
+                        int coordY = num / D * i;
 
                         if (blocks[world[i][j]&255] != null) {
                             blocks[world[i][j]&255].drawWithTurn(g, coordX, coordY, x, y,(world[i][j]>>8)&3);
                         }
-
+                        if (i == currentBlock[0] && j == currentBlock[1]) {
+                            int index = (int)((float)(strengths[world[i][j]]-currentBlock[2])/strengths[world[i][j]]*breakingProgress.length);
+                            breakingProgress[index].drawOneColor(g, coordX, coordY, x, y, new Color(0,0,0,100));
+                        }
                         if (i == player[0] && j == player[1]) {
                             playerView.drawWithTurn(g,coordX,coordY,x,y,player[2]);
                         }
@@ -149,10 +169,12 @@ public class WalkAndBuld {
                     if (blocks[inventory[i][j][0]] != null) {
                         blocks[inventory[i][j][0]].drawTransparent(g, coordX, coordY, X, Y);
                     }
-                    if (inventory[i][j][1] != 1 && inventory[i][j][0] != 0) {
-                        g.setColor(Color.BLACK);
-                        g.drawString(Integer.toString(inventory[i][j][1]), coordX, coordY + Y);
+                    g.setColor(Color.BLACK);
+                    if (inventory[i][j][0] != 0) {
+                        if (inventory[i][j][1] != 1) {g.drawString(Integer.toString(inventory[i][j][1]), coordX+X-12, coordY + Y);}
+                        g.drawString(names[inventory[i][j][0]], coordX, coordY + Y);
                     }
+
                 }
 
 
@@ -202,9 +224,10 @@ public class WalkAndBuld {
                             if (blocks[inventory[i][j][0]] != null) {
                                 blocks[inventory[i][j][0]].draw(g, coordX, coordY, X, Y);
                             }
-                            if (inventory[i][j][1] != 1 && inventory[i][j][0] != 0) {
-                                g.setColor(Color.BLACK);
-                                g.drawString(Integer.toString(inventory[i][j][1]), coordX, coordY + Y);
+                            g.setColor(Color.black);
+                            if (inventory[i][j][0] != 0) {
+                                if (inventory[i][j][1] != 1) {g.drawString(Integer.toString(inventory[i][j][1]), coordX+X-12, coordY + Y);}
+                                g.drawString(names[inventory[i][j][0]], coordX, coordY + Y);
                             }
                         }
                     }
@@ -242,7 +265,7 @@ public class WalkAndBuld {
                     g.setColor(new Color(255, 0, 0, 100));
                     g.fillRect(0, 0, 1000, 1000);
                     g.setColor(new Color(0, 0, 0));
-                    g.drawString("Вы умерли", 0, 0);
+                    g.drawString("Вы умерли", 100, 100);
                     timersRun[0] = false;
                 }
             }
@@ -573,7 +596,7 @@ public class WalkAndBuld {
 
                 WaBMethods.updateWorld(world, darkness[0]);
 
-                WaBMethods.updateCopperCircuits(world);
+                //WaBMethods.updateCopperCircuits(world);//не доработано
 
                 panel.updateUI();
             }

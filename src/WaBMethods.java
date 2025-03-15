@@ -1,3 +1,5 @@
+import test1.PlaySound;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -242,7 +244,7 @@ public class WaBMethods {
     }
     public static int getOrDefault(int[][] world, int x, int y, int default_){
         if (y<0||y>=world.length||x<0||x>=world[0].length){return default_;}
-        return world[y][x];
+        return world[y][x]&255;
     }
     public static int breakStrength(int breakingBlock, int item){
         if ((breakingBlock==1||breakingBlock==7||breakingBlock==10)){
@@ -276,28 +278,78 @@ public class WaBMethods {
     }
     public static int getItem(int block){return block&255;}
     public static int getDirection(int block){return block>>8&2;}
-    public static boolean getDirectionable(int block){return (block>>10&1)==0;}
-    public static int getLightStrength(int block){
-        return block&255;
-    }
-    public static void updateCopperCircuits(int[][] world_){
+
+    public static void updateCopperCircuits(int[][] world_){//не доработано
         int[][] world = world_.clone();
         for (int i = 1; i < world.length-1; i++){
             for (int j = 1; j < world.length-1; j++){
-                if ((world[i][j]&255)==34){
-                    if ((world[i][j+1]&255)==35&&getDirection(world[i][j-1])==0){world[i][j]=35|(world[i][j]&(256|512));}
-                    if ((world[i-1][j]&255)==35&&getDirection(world[i][j-1])==1){world[i][j]=35|(world[i][j]&(256|512));}
-                    if ((world[i][j-1]&255)==35&&getDirection(world[i][j-1])==2){world[i][j]=35|(world[i][j]&(256|512));}
-                    if ((world[i+1][j]&255)==35&&getDirection(world[i][j-1])==3){world[i][j]=35|(world[i][j]&(256|512));}
-                }
-                if ((world[i][j]&255)==35){
-                    if ((world[i][j+1]&255)!=35&&getDirection(world[i][j-1])==0){world[i][j]=34|(world[i][j]&(256|512));}
-                    if ((world[i-1][j]&255)!=35&&getDirection(world[i][j-1])==1){world[i][j]=34|(world[i][j]&(256|512));}
-                    if ((world[i][j-1]&255)!=35&&getDirection(world[i][j-1])==2){world[i][j]=34|(world[i][j]&(256|512));}
-                    if ((world[i+1][j]&255)!=35&&getDirection(world[i][j-1])==3){world[i][j]=34|(world[i][j]&(256|512));}
+                if (world_[i][j]==34){
+
+
                 }
             }
         }
         world_=world.clone();
+    }
+    public static void whiteNoise(int min, int max, String type,int volume,int millis){
+        for (int i = 0; i < 100; i++){
+            new PlaySound(type,millis/100,MolniyarMethod.randomNumber(min,max),volume);
+        }
+    }
+    public static void playSound(int type){
+        switch (type){
+            case 0 -> {new PlaySound("2",1,40,100);}
+            case 1 -> {new PlaySound("2",1,50,100);}
+            case 2 -> {}
+            case 3 -> {}
+        }
+    }
+    public static String[] getNames(){
+        return new String[]{
+                "air",
+                "oak_log",
+                "leaves_block",
+                "leaves",
+                "rocks",
+                "stone",
+                "magnetite",
+                "oak_planks",
+                "stick",
+                "apple",
+                "campfire",
+                "sapling",
+                "grass",
+                "iron_ore",
+                "iron_ingot",
+                "coal",
+                "torch",
+                "lanten",
+
+                "wooden_pickaxe",
+                "wooden_axe",
+
+                "stone_pickaxe",
+                "stone_axe",
+
+                "iron_pickaxe",
+                "iron_axe",
+
+                "wheat_seeds",
+                "wheat_small_grass",
+                "wheat_grass",
+                "wheat_big_grass",
+                "wheat_grown_grass",
+                "wheat",
+                "dough",
+                "bread",
+                "copper_ore",
+                "copper_ingot",
+                "copper_chain",
+                "copper_active_chain",
+                "copper_NOT",
+                "copper_active_NOT",
+                "copper_giving_chain",
+                "copper_giving_active_chain"
+        };
     }
 }

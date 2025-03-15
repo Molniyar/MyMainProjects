@@ -29,7 +29,7 @@ public class Coder {
                     case 'г' -> result.append("ⴴ");
                     case 'д' -> result.append("ᛝ");
                     case 'е' -> result.append("ᖷⲻ");
-                    case 'ё' -> result.append("ᖷⲻ");
+                    case 'ё' -> result.append("ᖷⲻ");//another
                     case 'ж' -> result.append("◬");
                     case 'з' -> result.append("▽");
                     case 'и' -> {
@@ -51,10 +51,10 @@ public class Coder {
                     case 'т' -> result.append("ⴳ");
                     case 'у' -> result.append("○");
                     case 'ф' -> result.append("У");
-                    case 'х' -> result.append("_");
-                    case 'ц' -> result.append("ʁ");
+                    case 'х' -> result.append("_");//another   ◹⩗⋋⋌⩘⩗⫮⩘⨿‾¯⇱→↖↘⋋ ↘↚↛↴↰∟
+                    case 'ц' -> result.append("⁜");
                     case 'ч' -> result.append("ʁ");
-                    case 'ш' -> result.append("◁▷");
+                    case 'ш' -> result.append("⩤⩥");
                     case 'щ' -> result.append("◁▷");//◁▷
                     case 'ъ' -> result.append("⌉");
                     case 'ы' -> result.append("⊡");
@@ -77,7 +77,7 @@ public class Coder {
                 }
             }
 
-            res.setText(result.toString());
+            res.setText(result.toString());//
         });
 
         JButton button2 = new JButton("Code 2");
